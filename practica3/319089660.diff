@@ -1,0 +1,532 @@
+diff --git a/src/main/java/mx/unam/ciencias/icc/Estudiante.java b/src/main/java/mx/unam/ciencias/icc/Estudiante.java
+index bc7557e..f62b490 100644
+--- a/src/main/java/mx/unam/ciencias/icc/Estudiante.java
++++ b/src/main/java/mx/unam/ciencias/icc/Estudiante.java
+@@ -27,6 +27,10 @@ public class Estudiante {
+                       double promedio,
+                       int    edad) {
+         // Aquí va su código.
++        this.nombre = nombre;
++        this.cuenta = cuenta;
++        this.promedio = promedio;
++        this.edad = edad;
+     }
+ 
+     /**
+@@ -35,6 +39,7 @@ public class Estudiante {
+      */
+     public String getNombre() {
+         // Aquí va su código.
++        return nombre;
+     }
+ 
+     /**
+@@ -43,6 +48,7 @@ public class Estudiante {
+      */
+     public void setNombre(String nombre) {
+         // Aquí va su código.
++        this.nombre = nombre;
+     }
+ 
+     /**
+@@ -51,6 +57,7 @@ public class Estudiante {
+      */
+     public int getCuenta() {
+         // Aquí va su código.
++        return cuenta;
+     }
+ 
+     /**
+@@ -59,6 +66,7 @@ public class Estudiante {
+      */
+     public void setCuenta(int cuenta) {
+         // Aquí va su código.
++        this.cuenta = cuenta;
+     }
+ 
+     /**
+@@ -67,6 +75,7 @@ public class Estudiante {
+      */
+     public double getPromedio() {
+         // Aquí va su código.
++        return promedio;
+     }
+ 
+     /**
+@@ -75,6 +84,7 @@ public class Estudiante {
+      */
+     public void setPromedio(double promedio) {
+         // Aquí va su código.
++        this.promedio = promedio;
+     }
+ 
+     /**
+@@ -83,6 +93,7 @@ public class Estudiante {
+      */
+     public int getEdad() {
+         // Aquí va su código.
++        return edad;
+     }
+ 
+     /**
+@@ -91,6 +102,7 @@ public class Estudiante {
+      */
+     public void setEdad(int edad) {
+         // Aquí va su código.
++        this.edad = edad;
+     }
+ 
+     /**
+@@ -99,6 +111,12 @@ public class Estudiante {
+      */
+     public String toString() {
+         // Aquí va su código.
++        String cadena = String.format("Nombre   : %s\n" +
++                                      "Cuenta   : %09d\n" +
++                                      "Promedio : %2.2f\n" +
++                                      "Edad     : %d",
++                                      nombre, cuenta, promedio, edad);
++                                      return cadena;
+     }
+ 
+     /**
+@@ -111,5 +129,15 @@ public class Estudiante {
+      */
+     public boolean equals(Estudiante estudiante) {
+         // Aquí va su código.
++        if (estudiante == null){
++            return false;
++        }
++        if (estudiante.nombre.equals(nombre) && estudiante.cuenta==cuenta &&
++        estudiante.edad==edad && estudiante.promedio==promedio) {
++            return true;
++        }
++        else {
++          return false;
++      }
+     }
+ }
+diff --git a/src/main/java/mx/unam/ciencias/icc/ListaEstudiante.java b/src/main/java/mx/unam/ciencias/icc/ListaEstudiante.java
+index c7609f1..118ea40 100644
+--- a/src/main/java/mx/unam/ciencias/icc/ListaEstudiante.java
++++ b/src/main/java/mx/unam/ciencias/icc/ListaEstudiante.java
+@@ -30,6 +30,7 @@ public class ListaEstudiante {
+         /* Construye un nodo con un elemento. */
+         private Nodo(Estudiante elemento) {
+             // Aquí va su código.
++            this.elemento = elemento;
+         }
+ 
+         /**
+@@ -38,6 +39,7 @@ public class ListaEstudiante {
+          */
+         public Nodo getAnterior() {
+             // Aquí va su código.
++            return anterior;
+         }
+ 
+         /**
+@@ -46,6 +48,7 @@ public class ListaEstudiante {
+          */
+         public Nodo getSiguiente() {
+             // Aquí va su código.
++            return siguiente;
+         }
+ 
+         /**
+@@ -54,6 +57,7 @@ public class ListaEstudiante {
+          */
+         public Estudiante get() {
+             // Aquí va su código.
++            return elemento;
+         }
+     }
+ 
+@@ -70,8 +74,127 @@ public class ListaEstudiante {
+      */
+     public int getLongitud() {
+         // Aquí va su código.
++        return longitud;
+     }
+ 
++    //Métodos auxiliares
++
++    //Método auxiliar para buscar un nodo
++    private Nodo buscaNodo(Nodo n, Estudiante buscado){ 
++        if (n != null){
++            if(n.elemento.equals(buscado)){
++                return n;
++            }
++            return buscaNodo(n.siguiente, buscado);
++        }
++        return null;
++    }
++
++    //Polimorfismo de buscaNodo
++    private Nodo buscaNodo(Estudiante buscado){ 
++        Nodo n = cabeza;
++        n = buscaNodo(n, buscado);
++        return n;
++    }
++
++    //Método auxiliar para buscar un índice 
++    private Nodo buscaNodoIndice(Nodo n, int indiceBuscado, int i){ 
++        if (n != null){
++            if(i == indiceBuscado){
++                return n;
++            }
++            return buscaNodoIndice(n.siguiente, indiceBuscado, ++i);
++        }
++        return null;
++    }
++
++    //Polimorfismo de buscaNodoIndice 
++    private Nodo buscaNodoIndice(int i){ 
++        int a = 0;
++        Nodo n = cabeza;
++        n = buscaNodoIndice(n, i, a);
++        return n;
++    }
++
++    //Método auxiliar para eliminar un nodo 
++    private void eliminarNodo(Nodo porEliminar){ 
++        Nodo s;
++        Nodo a;
++        if (rabo == cabeza) {
++            cabeza = rabo = null;
++            longitud = 0;
++        }
++        else if (porEliminar == cabeza) {
++            s = porEliminar.siguiente;
++            s.anterior = null;
++            cabeza = s;
++            longitud --;
++        }
++        else if (porEliminar == rabo){
++            s = porEliminar.anterior;
++            s.siguiente = null;
++            rabo = s;
++            longitud --;
++        }
++        else {
++            a = porEliminar.anterior;
++            s = porEliminar.siguiente;
++            a.siguiente = s;
++            s.anterior = a;
++            longitud --;
++        }
++    }
++
++    //Método auxiliar recursivo del método reversa
++    private ListaEstudiante auxiliarReversa(Nodo n, ListaEstudiante lista){
++        if (n == null){
++            return lista;
++        }
++        lista.agregaInicio(n.elemento);
++        return auxiliarReversa(n.siguiente, lista);
++    }
++
++    //Método auxiliar recursivo del método copia
++    private ListaEstudiante auxiliarCopia(Nodo n, ListaEstudiante lista){
++        if (n == null){
++            return lista;
++        }
++        lista.agregaFinal(n.elemento);
++        return auxiliarCopia(n.siguiente, lista);
++    }
++
++    //Método auxiliar recursivo para toString
++    private String auxiliarToString(Nodo n, String s){
++	    if ( n != rabo ) {
++		    s += String.format("%s, ", n.elemento);
++		    return auxiliarToString(n.siguiente, s);
++	    }
++	    return s;
++    }
++
++    //Método auxiliar recursivo para para indiceDe
++    private int auxiliarIndiceDe(Estudiante elemento, int a, Nodo n){
++        if (n != null){
++            if(n.elemento.equals(elemento))
++                return a;
++            return auxiliarIndiceDe(elemento, ++a, n.siguiente);
++        }
++        return -1;
++    }
++
++    //Método auxiliar recursivo para equals
++    private boolean auxiliarEquals(ListaEstudiante lista, Nodo n, Nodo s){
++        if (n != null){
++            if(n.elemento.equals(s.elemento)){
++            	return auxiliarEquals(lista,n.siguiente, s.siguiente);
++	    }else{
++                return false;
++	    }
++        }
++        return true;
++    }
++
++
+     /**
+      * Nos dice si la lista es vacía.
+      * @return <code>true</code> si la lista es vacía, <code>false</code> en
+@@ -79,6 +202,12 @@ public class ListaEstudiante {
+      */
+     public boolean esVacia() {
+         // Aquí va su código.
++        if (cabeza != null){ 
++            return false;
++        }
++        else {
++          return true;
++        }
+     }
+ 
+     /**
+@@ -89,6 +218,17 @@ public class ListaEstudiante {
+      */
+     public void agregaFinal(Estudiante elemento) {
+         // Aquí va su código.
++        if (elemento == null)
++            return;
++        longitud ++;
++        Nodo n = new Nodo(elemento);
++        if (rabo == null){
++            rabo = cabeza = n;
++        } else {
++          rabo.siguiente = n;
++          n.anterior = rabo;
++          rabo = n;
++        }
+     }
+ 
+     /**
+@@ -99,6 +239,17 @@ public class ListaEstudiante {
+      */
+     public void agregaInicio(Estudiante elemento) {
+         // Aquí va su código.
++        if (elemento == null)
++            return;
++        longitud ++;
++        Nodo n = new Nodo(elemento);
++        if (rabo == null){
++            rabo = cabeza = n;
++        } else {
++          cabeza.anterior = n;
++          n.siguiente = cabeza;
++          cabeza = n;
++        }
+     }
+ 
+     /**
+@@ -117,6 +268,26 @@ public class ListaEstudiante {
+      */
+     public void inserta(int i, Estudiante elemento) {
+         // Aquí va su código.
++        if (elemento == null){
++            return;
++        }
++        if (i <= 0){
++            agregaInicio(elemento);
++        }
++        else if (i >= longitud){
++            agregaFinal(elemento);
++        }
++        else {
++            Nodo s = buscaNodoIndice(i);
++            Nodo n = new Nodo(elemento);
++            Nodo a;
++            a = s.anterior;
++            n.anterior = a;
++            a.siguiente = n;
++            n.siguiente = s;
++            s.anterior = n;
++            longitud ++;
++        }
+     }
+ 
+     /**
+@@ -126,6 +297,14 @@ public class ListaEstudiante {
+      */
+     public void elimina(Estudiante elemento) {
+         // Aquí va su código.
++        if (elemento == null){
++            return;
++        }
++        Nodo marcado = buscaNodo(elemento);
++        if (marcado == null){
++            return;
++        }
++        eliminarNodo(marcado); 
+     }
+ 
+     /**
+@@ -135,6 +314,21 @@ public class ListaEstudiante {
+      */
+     public Estudiante eliminaPrimero() {
+         // Aquí va su código.
++        if (cabeza == null){
++            return null;
++        }
++        Estudiante n;
++        n = cabeza.elemento;
++        if(rabo == cabeza){
++            rabo = cabeza = null;
++            longitud = 0;
++        }
++        if (cabeza != null){
++            cabeza = cabeza.siguiente;
++            cabeza.anterior = null;
++            longitud --;
++        }
++        return n;
+     }
+ 
+     /**
+@@ -144,6 +338,21 @@ public class ListaEstudiante {
+      */
+     public Estudiante eliminaUltimo() {
+         // Aquí va su código.
++        if (cabeza == null){
++            return null;
++        }
++        Estudiante n;
++        n = rabo.elemento;
++        if(rabo == cabeza){
++            rabo = cabeza = null;
++            longitud = 0;
++        }
++        if (rabo != null){
++            rabo = rabo.anterior;
++            rabo.siguiente = null;
++            longitud --;
++        }
++        return n;
+     }
+ 
+     /**
+@@ -154,6 +363,14 @@ public class ListaEstudiante {
+      */
+     public boolean contiene(Estudiante elemento) {
+         // Aquí va su código.
++        if(elemento == null){
++            return false;
++        }
++        Nodo n = buscaNodo(elemento);
++        if(n == null){
++            return false;
++        }
++        return true;
+     }
+ 
+     /**
+@@ -162,6 +379,7 @@ public class ListaEstudiante {
+      */
+     public ListaEstudiante reversa() {
+         // Aquí va su código.
++        return auxiliarReversa(cabeza, new ListaEstudiante());
+     }
+ 
+     /**
+@@ -171,6 +389,7 @@ public class ListaEstudiante {
+      */
+     public ListaEstudiante copia() {
+         // Aquí va su código.
++        return auxiliarCopia(cabeza, new ListaEstudiante());
+     }
+ 
+     /**
+@@ -178,6 +397,8 @@ public class ListaEstudiante {
+      */
+     public void limpia() {
+         // Aquí va su código.
++        cabeza = rabo = null;
++        longitud = 0;
+     }
+ 
+     /**
+@@ -187,6 +408,10 @@ public class ListaEstudiante {
+      */
+     public Estudiante getPrimero() {
+         // Aquí va su código.
++        if (cabeza == null)
++            return null;
++        else 
++            return cabeza.elemento;
+     }
+ 
+     /**
+@@ -196,6 +421,10 @@ public class ListaEstudiante {
+      */
+     public Estudiante getUltimo() {
+         // Aquí va su código.
++        if (rabo == null)
++            return null;
++        else 
++            return rabo.elemento;
+     }
+ 
+     /**
+@@ -207,6 +436,11 @@ public class ListaEstudiante {
+      */
+     public Estudiante get(int i) {
+         // Aquí va su código.
++        if (i < 0 || i >= longitud)
++            return null;
++        Nodo b;
++        b = buscaNodoIndice(i);
++        return b.elemento;
+     }
+ 
+     /**
+@@ -217,6 +451,7 @@ public class ListaEstudiante {
+      */
+     public int indiceDe(Estudiante elemento) {
+         // Aquí va su código.
++        return auxiliarIndiceDe(elemento, 0, cabeza);
+     }
+ 
+     /**
+@@ -225,6 +460,13 @@ public class ListaEstudiante {
+      */
+     public String toString() {
+         // Aquí va su código.
++        if ( cabeza == null) 
++		    return "[]";
++	    String s;
++	    Nodo n = cabeza;
++	    s = auxiliarToString(n, "[");
++	    s += String.format("%s]", rabo.elemento);
++	    return s;
+     }
+ 
+     /**
+@@ -235,6 +477,11 @@ public class ListaEstudiante {
+      */
+     public boolean equals(ListaEstudiante lista) {
+         // Aquí va su código.
++        if (lista == null)
++            return false;
++        if (longitud != lista.longitud)
++            return false;
++        return auxiliarEquals(lista, cabeza, lista.cabeza);
+     }
+ 
+     /**
+@@ -243,6 +490,7 @@ public class ListaEstudiante {
+      */
+     public Nodo getCabeza() {
+         // Aquí va su código.
++        return cabeza;
+     }
+ 
+     /**
+@@ -251,5 +499,6 @@ public class ListaEstudiante {
+      */
+     public Nodo getRabo() {
+         // Aquí va su código.
++        return rabo;
+     }
+-}
++}
+\ No newline at end of file

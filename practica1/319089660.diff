@@ -1,0 +1,93 @@
+diff --git a/src/main/java/mx/unam/ciencias/icc/Estudiante.java b/src/main/java/mx/unam/ciencias/icc/Estudiante.java
+index 470a28e..70e498c 100644
+--- a/src/main/java/mx/unam/ciencias/icc/Estudiante.java
++++ b/src/main/java/mx/unam/ciencias/icc/Estudiante.java
+@@ -28,6 +28,9 @@ public class Estudiante {
+                       int    edad) {
+         this.nombre    = nombre;
+         // Aquí va su código.
++        this.cuenta = cuenta;
++        this.promedio = promedio;
++        this.edad = edad;
+     }
+ 
+     /**
+@@ -52,6 +55,7 @@ public class Estudiante {
+      */
+     public int getCuenta() {
+         // Aquí va su código.
++        return cuenta;
+     }
+ 
+     /**
+@@ -60,6 +64,7 @@ public class Estudiante {
+      */
+     public void setCuenta(int cuenta) {
+         // Aquí va su código.
++        this.cuenta = cuenta;
+     }
+ 
+     /**
+@@ -68,6 +73,7 @@ public class Estudiante {
+      */
+     public double getPromedio() {
+         // Aquí va su código.
++        return promedio;
+     }
+ 
+     /**
+@@ -76,6 +82,7 @@ public class Estudiante {
+      */
+     public void setPromedio(double promedio) {
+         // Aquí va su código.
++        this.promedio = promedio;
+     }
+ 
+     /**
+@@ -84,6 +91,7 @@ public class Estudiante {
+      */
+     public int getEdad() {
+         // Aquí va su código.
++        return edad;
+     }
+ 
+     /**
+@@ -92,6 +100,7 @@ public class Estudiante {
+      */
+     public void setEdad(int edad) {
+         // Aquí va su código.
++        this.edad = edad;
+     }
+ 
+     /**
+@@ -100,6 +109,12 @@ public class Estudiante {
+      */
+     public String toString() {
+         // Aquí va su código.
++        String cadena = String.format("Nombre   : %s\n" +
++                                      "Cuenta   : %09d\n" +
++                                      "Promedio : %2.2f\n" +
++                                      "Edad     : %d",
++                                      nombre, cuenta, promedio, edad);
++                                      return cadena;
+     }
+ 
+     /**
+@@ -111,8 +126,16 @@ public class Estudiante {
+      *         <code>false</code> en otro caso.
+      */
+     public boolean equals(Estudiante estudiante) {
+-        if (estudiante == null)
++        if (estudiante == null){
+             return false;
+         // Aquí va su código.
++      }
++      if (estudiante.nombre.equals(nombre) && estudiante.cuenta==cuenta &&
++      estudiante.edad==edad && estudiante.promedio==promedio) {
++        return true;
++      }
++      else {
++      return false;
++      }
+     }
+ }

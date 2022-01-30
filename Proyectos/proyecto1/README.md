@@ -1,0 +1,2 @@
+Esta es una base de datos diseñada para guardar datos de atletas de taekwondo formalmente, es decir, como se realiza en competencias internacionales de taekwondo de alto nivel, en donde las características importantes son la edad, el peso para asignar la categoría de
+combate del competidor, el grado kup del atleta y el país al que representa. 

@@ -101,7 +101,6 @@ public class Estudiante {
      * @return una representación en cadena del estudiante.
      */
     public String toString() {
-        // Aquí va su código.
         String cadena = String.format("Nombre   : %s\n" +
                                       "Cuenta   : %09d\n" +
                                       "Promedio : %2.2f\n" +

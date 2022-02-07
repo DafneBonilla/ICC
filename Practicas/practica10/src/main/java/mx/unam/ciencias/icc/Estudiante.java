@@ -268,13 +268,13 @@ public class Estudiante implements Registro<Estudiante, CampoEstudiante> {
         return getNombre().indexOf(a) != -1;
     }
     private boolean cazaCuenta(Object n) {
-        if  (!(n instanceof Integer)) 
+        if (!(n instanceof Integer)) 
             return false;
         Integer a = (Integer) n;
         return getCuenta() >= a.intValue();
     }
     private boolean cazaPromedio(Object n) {
-        if  (!(n instanceof Double)) 
+        if (!(n instanceof Double)) 
             return false;
         Double a = (Double) n;
         return getPromedio() >= a.doubleValue();

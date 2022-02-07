@@ -100,9 +100,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
             escucha.baseDeDatosModificada(EventoBaseDeDatos.REGISTRO_MODIFICADO, registro1, registro2);
             registro.actualiza(registro2);
         }
-        else {
-            return;
-        }
+        return;
     }
 
     /**

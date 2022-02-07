@@ -72,18 +72,17 @@ public enum Mensaje {
         if (mensaje.startsWith(PREFIJO)) {
             String message = mensaje.replace(PREFIJO, "");
             switch(message) {
-              case "BASE_DE_DATOS": return BASE_DE_DATOS;
-              case "REGISTRO_AGREGADO": return REGISTRO_AGREGADO;
-              case "REGISTRO_ELIMINADO": return REGISTRO_ELIMINADO;
-              case "REGISTRO_MODIFICADO": return REGISTRO_MODIFICADO;
-              case "DESCONECTAR": return DESCONECTAR;
-              case "DETENER_SERVICIO": return DETENER_SERVICIO;
-              case "ECO": return ECO;
-              default: return INVALIDO;
+              case "BASE_DE_DATOS":         return BASE_DE_DATOS;
+              case "REGISTRO_AGREGADO":     return REGISTRO_AGREGADO;
+              case "REGISTRO_ELIMINADO":    return REGISTRO_ELIMINADO;
+              case "REGISTRO_MODIFICADO":   return REGISTRO_MODIFICADO;
+              case "DESCONECTAR":           return DESCONECTAR;
+              case "DETENER_SERVICIO":      return DETENER_SERVICIO;
+              case "ECO":                   return ECO;
+              default:                      return INVALIDO;
             }
-        } else {
+        } else
             return INVALIDO;
-        }
     }
 
     /**
@@ -92,14 +91,14 @@ public enum Mensaje {
      */
     public String toString() {
         switch(this) {
-          case BASE_DE_DATOS: return PREFIJO + "BASE_DE_DATOS";
-          case REGISTRO_AGREGADO: return PREFIJO + "REGISTRO_AGREGADO";
-          case REGISTRO_ELIMINADO: return PREFIJO + "REGISTRO_ELIMINADO";
+          case BASE_DE_DATOS:       return PREFIJO + "BASE_DE_DATOS";
+          case REGISTRO_AGREGADO:   return PREFIJO + "REGISTRO_AGREGADO";
+          case REGISTRO_ELIMINADO:  return PREFIJO + "REGISTRO_ELIMINADO";
           case REGISTRO_MODIFICADO: return PREFIJO + "REGISTRO_MODIFICADO";
-          case DESCONECTAR: return PREFIJO + "DESCONECTAR";
-          case DETENER_SERVICIO: return PREFIJO + "DETENER_SERVICIO";
-          case ECO: return PREFIJO + "ECO";
-          case INVALIDO: return PREFIJO + "INVALIDO";
+          case DESCONECTAR:         return PREFIJO + "DESCONECTAR";
+          case DETENER_SERVICIO:    return PREFIJO + "DETENER_SERVICIO";
+          case ECO:                 return PREFIJO + "ECO";
+          case INVALIDO:            return PREFIJO + "INVALIDO";
         }
         return null;
     }

@@ -141,7 +141,7 @@ public class Conexion<R extends Registro<R, ?>> {
         try {
             activa = false;
             enchufe.close();
-          } catch(IOException e) {
+          } catch(IOException ioe) {
             System.out.println("Error al cerrar la conexión");
         }
     }

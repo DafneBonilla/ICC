@@ -92,7 +92,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      */
     public void modificaRegistro(R registro1, R registro2) {
         if (registro1 == null || registro2 == null) 
-            throw new IllegalArgumentException("Algún registro es nulo");
+            throw new IllegalArgumentException("Algún Registro es Nulo");
         int a = registros.indiceDe(registro1);
         if (registros.contiene(registro1) == true) {
             R registro = registros.get(a);

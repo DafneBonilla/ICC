@@ -24,8 +24,7 @@ public abstract class BaseDeDatos {
      * Constructor único.
      */
     public BaseDeDatos() {
-        // Aquí va su código.
-        registros = new Lista();
+        this.registros = new Lista();
     }
 
     /**
@@ -33,7 +32,6 @@ public abstract class BaseDeDatos {
      * @return el número de registros en la base de datos.
      */
     public int getNumRegistros() {
-        // Aquí va su código.
         return registros.getLongitud();
     }
 
@@ -43,7 +41,6 @@ public abstract class BaseDeDatos {
      * @return una lista con los registros en la base de datos.
      */
     public Lista getRegistros() {
-        // Aquí va su código.
         return registros.copia();
     }
 
@@ -52,7 +49,6 @@ public abstract class BaseDeDatos {
      * @param registro el registro que hay que agregar a la base de datos.
      */
     public void agregaRegistro(Registro registro) {
-        // Aquí va su código.
         registros.agregaFinal(registro);
     }
 
@@ -61,7 +57,6 @@ public abstract class BaseDeDatos {
      * @param registro el registro que hay que eliminar de la base de datos.
      */
     public void eliminaRegistro(Registro registro) {
-        // Aquí va su código.
         registros.elimina(registro);
     }
 
@@ -69,7 +64,6 @@ public abstract class BaseDeDatos {
      * Limpia la base de datos.
      */
     public void limpia() {
-        // Aquí va su código.
         registros.limpia();
     }
 
@@ -79,9 +73,8 @@ public abstract class BaseDeDatos {
      * @throws IOException si ocurre un error de entrada/salida.
      */
     public void guarda(BufferedWriter out) throws IOException {
-        // Aquí va su código.
         Lista.Nodo n = registros.getCabeza();
-        while(n!= null){
+        while (n!= null) {
           Registro r = (Registro) n.get();
           out.write(r.serializa());
           n = n.getSiguiente();
@@ -96,12 +89,10 @@ public abstract class BaseDeDatos {
      * @throws IOException si ocurre un error de entrada/salida.
      */
     public void carga(BufferedReader in) throws IOException {
-        // Aquí va su código.
-        if (getNumRegistros() != 0){
+        if (getNumRegistros() != 0)
             registros.limpia();
-        }
         String linea;
-        while((linea = in.readLine()) != null){
+        while ((linea = in.readLine()) != null) {
             Registro r = creaRegistro();
             try {
                 r.deserializa(linea);
@@ -122,14 +113,14 @@ public abstract class BaseDeDatos {
      *         correcta.
      */
     public Lista buscaRegistros(Enum campo, Object valor) {
-        // Aquí va su código.
-        if(!(campo instanceof CampoEstudiante))
+        if (!(campo instanceof CampoEstudiante))
             throw new IllegalArgumentException();
         Lista l = new Lista();
         Lista.Nodo n = registros.getCabeza();
-        while(n != null){
+        while (n != null) {
           Registro r = (Registro) n.get();
-          if(r.caza(campo, valor))l.agregaFinal(r);
+          if (r.caza(campo, valor))
+            l.agregaFinal(r);
           n = n.getSiguiente();
         }
         return l;

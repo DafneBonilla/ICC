@@ -32,8 +32,8 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      * Constructor único.
      */
     public BaseDeDatos() {
-        registros = new Lista<R>();
-        escuchas = new Lista<EscuchaBaseDeDatos<R>>();
+        this.registros = new Lista<R>();
+        this.escuchas = new Lista<EscuchaBaseDeDatos<R>>();
     }
 
     /**
@@ -94,15 +94,13 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
         if (registro1 == null || registro2 == null) 
             throw new IllegalArgumentException("Algún registro es nulo");
         int a = registros.indiceDe(registro1);
-        if (registros.contiene(registro1) == true){
+        if (registros.contiene(registro1) == true) {
             R registro = registros.get(a);
             for (EscuchaBaseDeDatos<R> escucha : escuchas)
             escucha.baseDeDatosModificada(EventoBaseDeDatos.REGISTRO_MODIFICADO, registro1, registro2);
             registro.actualiza(registro2);
         }
-        else{
-            return;
-        }
+        return;
     }
 
     /**
@@ -125,7 +123,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
         try {
             for (R registro : registros)
                 out.write(registro.serializa());
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             throw new IOException("Error de entrada/salida");
         }
     }
@@ -146,7 +144,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
         for (EscuchaBaseDeDatos<R> escucha : escuchas)
             escucha.baseDeDatosModificada(EventoBaseDeDatos.BASE_LIMPIADA, null, null);
         String linea;
-        while ((linea = in.readLine()) != null){
+        while ((linea = in.readLine()) != null) {
             R registro = creaRegistro();
             try {
                 registro.deserializa(linea);

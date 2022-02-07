@@ -27,7 +27,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      * Constructor único.
      */
     public BaseDeDatos() {
-        registros = new Lista<R>();
+        this.registros = new Lista<R>();
     }
 
     /**
@@ -77,7 +77,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      */
     public void guarda(BufferedWriter out) throws IOException {
         Lista<R>.Nodo n = registros.getCabeza();
-        while(n!= null){
+        while (n!= null) {
           R r = (R) n.get();
           out.write(r.serializa());
           n = n.getSiguiente();
@@ -92,11 +92,10 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      * @throws IOException si ocurre un error de entrada/salida.
      */
     public void carga(BufferedReader in) throws IOException {
-        if (getNumRegistros() != 0){
+        if (getNumRegistros() != 0)
             registros.limpia();
-        }
         String linea;
-        while((linea = in.readLine()) != null){
+        while ((linea = in.readLine()) != null) {
             R r = creaRegistro();
             try {
                 r.deserializa(linea);
@@ -117,13 +116,14 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      *         correcta.
      */
     public Lista<R> buscaRegistros(C campo, Object valor) {
-        if(!(campo instanceof CampoEstudiante))
+        if (!(campo instanceof CampoEstudiante))
             throw new IllegalArgumentException();
         Lista<R> l = new Lista<>();
         Lista<R>.Nodo n = registros.getCabeza();
-        while(n != null){
+        while (n != null) {
           R r = (R) n.get();
-          if(r.caza(campo, valor))l.agregaFinal(r);
+          if (r.caza(campo, valor))
+            l.agregaFinal(r);
           n = n.getSiguiente();
         }
         return l;

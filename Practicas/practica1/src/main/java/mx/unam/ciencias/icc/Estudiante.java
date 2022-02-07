@@ -118,9 +118,8 @@ public class Estudiante {
      *         <code>false</code> en otro caso.
      */
     public boolean equals(Estudiante estudiante) {
-        if (estudiante == null) {
+        if (estudiante == null)
             return false;
-        }
         if (estudiante.nombre.equals(nombre) && estudiante.cuenta == cuenta &&
         estudiante.edad == edad && estudiante.promedio == promedio) {
             return true;

@@ -118,9 +118,8 @@ public class ListaEstudiante {
         Nodo n = cabeza;
         int i = 0;
         while (n != null) {
-            if (i == indiceBuscado) {
+            if (i == indiceBuscado)
                 return n;
-            } 
             i++;
             n = n.siguiente;
         }
@@ -411,9 +410,8 @@ public class ListaEstudiante {
             if (n.elemento.equals(s.elemento)) {
                 n = n.siguiente;
                 s = s.siguiente;              
-            } else {
+            } else
                 return false;
-            }
         }
         return true;
     }

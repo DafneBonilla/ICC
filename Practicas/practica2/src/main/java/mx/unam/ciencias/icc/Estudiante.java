@@ -124,8 +124,7 @@ public class Estudiante {
         if (estudiante.nombre.equals(nombre) && estudiante.cuenta == cuenta &&
         estudiante.edad == edad && estudiante.promedio == promedio) {
             return true;
-        } else {
+        } else
           return false;
-        }
     }
 }

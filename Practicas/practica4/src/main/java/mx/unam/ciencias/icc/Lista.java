@@ -26,7 +26,6 @@ public class Lista {
 
         /* Construye un nodo con un elemento. */
         private Nodo(Object elemento) {
-            // Aquí va su código.
             this.elemento = elemento;
         }
 
@@ -35,7 +34,6 @@ public class Lista {
          * @return el nodo anterior del nodo.
          */
         public Nodo getAnterior() {
-            // Aquí va su código.
             return anterior;
         }
 
@@ -44,7 +42,6 @@ public class Lista {
          * @return el nodo siguiente del nodo.
          */
         public Nodo getSiguiente() {
-            // Aquí va su código.
             return siguiente;
         }
 
@@ -53,68 +50,23 @@ public class Lista {
          * @return el elemento del nodo.
          */
         public Object get() {
-            // Aquí va su código.
             return elemento;
         }
     }
 
-    /* Primer elemento de la lista. */
-    private Nodo cabeza;
-    /* Último elemento de la lista. */
-    private Nodo rabo;
-    /* Número de elementos en la lista. */
-    private int longitud;
-
-    /**
-     * Regresa la longitud de la lista.
-     * @return la longitud de la lista, el número de elementos que contiene.
-     */
-    public int getLongitud() {
-        // Aquí va su código.
-        return longitud;
-    }
-
-    //Métodos auxiliares
-
     //Método auxiliar para buscar un nodo
-    private Nodo buscaNodo(Nodo n, Object buscado){ 
-        if (n != null){
-            if(n.elemento.equals(buscado)){
+    private Nodo buscaNodo(Object buscado) { 
+        Nodo n = cabeza;
+        while (n != null) {
+            if (n.elemento.equals(buscado))
                 return n;
-            }
-            return buscaNodo(n.siguiente, buscado);
+            n = n.siguiente;
         }
         return null;
     }
-
-    //Polimorfismo de buscaNodo
-    private Nodo buscaNodo(Object buscado){ 
-        Nodo n = cabeza;
-        n = buscaNodo(n, buscado);
-        return n;
-    }
-
-    //Método auxiliar para buscar un índice 
-    private Nodo buscaNodoIndice(Nodo n, int indiceBuscado, int i){ 
-        if (n != null){
-            if(i == indiceBuscado){
-                return n;
-            }
-            return buscaNodoIndice(n.siguiente, indiceBuscado, ++i);
-        }
-        return null;
-    }
-
-    //Polimorfismo de buscaNodoIndice 
-    private Nodo buscaNodoIndice(int i){ 
-        int a = 0;
-        Nodo n = cabeza;
-        n = buscaNodoIndice(n, i, a);
-        return n;
-    }
-
-    //Método auxiliar para eliminar un nodo 
-    private void eliminarNodo(Nodo porEliminar){ 
+    
+    //Método auxiliar para eliminar un nodo
+    private void eliminarNodo(Nodo porEliminar) { 
         Nodo s;
         Nodo a;
         if (rabo == cabeza) {
@@ -127,7 +79,7 @@ public class Lista {
             cabeza = s;
             longitud --;
         }
-        else if (porEliminar == rabo){
+        else if (porEliminar == rabo) {
             s = porEliminar.anterior;
             s.siguiente = null;
             rabo = s;
@@ -142,55 +94,33 @@ public class Lista {
         }
     }
 
-    //Método auxiliar recursivo del método reversa
-    private Lista auxiliarReversa(Nodo n, Lista lista){
-        if (n == null){
-            return lista;
+    //Método auxiliar para buscar un nodo por índice 
+    private Nodo buscaNodoIndice(int indiceBuscado) { 
+        Nodo n = cabeza;
+        int i = 0;
+        while (n != null) {
+            if (i == indiceBuscado)
+                return n;
+            i++;
+            n = n.siguiente;
         }
-        lista.agregaInicio(n.elemento);
-        return auxiliarReversa(n.siguiente, lista);
+        return null;
     }
 
-    //Método auxiliar recursivo del método copia
-    private Lista auxiliarCopia(Nodo n, Lista lista){
-        if (n == null){
-            return lista;
-        }
-        lista.agregaFinal(n.elemento);
-        return auxiliarCopia(n.siguiente, lista);
-    }
+    /* Primer elemento de la lista. */
+    private Nodo cabeza;
+    /* Último elemento de la lista. */
+    private Nodo rabo;
+    /* Número de elementos en la lista. */
+    private int longitud;
 
-    //Método auxiliar recursivo para toString
-    private String auxiliarToString(Nodo n, String s){
-	    if ( n != rabo ) {
-		    s += String.format("%s, ", n.elemento);
-		    return auxiliarToString(n.siguiente, s);
-	    }
-	    return s;
+    /**
+     * Regresa la longitud de la lista.
+     * @return la longitud de la lista, el número de elementos que contiene.
+     */
+    public int getLongitud() {
+        return longitud;
     }
-
-    //Método auxiliar recursivo para para indiceDe
-    private int auxiliarIndiceDe(Object elemento, int a, Nodo n){
-        if (n != null){
-            if(n.elemento.equals(elemento))
-                return a;
-            return auxiliarIndiceDe(elemento, ++a, n.siguiente);
-        }
-        return -1;
-    }
-
-    //Método auxiliar recursivo para equals
-    private boolean auxiliarEquals(Lista lista, Nodo n, Nodo s){
-        if (n != null){
-            if(n.elemento.equals(s.elemento)){
-            	return auxiliarEquals(lista,n.siguiente, s.siguiente);
-	    }else{
-                return false;
-	    }
-        }
-        return true;
-    }
-
 
     /**
      * Nos dice si la lista es vacía.
@@ -198,13 +128,9 @@ public class Lista {
      *         otro caso.
      */
     public boolean esVacia() {
-        // Aquí va su código.
-        if (cabeza != null){ 
+        if (cabeza != null)
             return false;
-        }
-        else {
-          return true;
-        }
+        return true;
     }
 
     /**
@@ -214,12 +140,11 @@ public class Lista {
      *                 si es distinto de <code>null</code>.
      */
     public void agregaFinal(Object elemento) {
-        // Aquí va su código.
         if (elemento == null)
             return;
         longitud ++;
         Nodo n = new Nodo(elemento);
-        if (rabo == null){
+        if (rabo == null) {
             rabo = cabeza = n;
         } else {
           rabo.siguiente = n;
@@ -235,7 +160,6 @@ public class Lista {
      *                 si es distinto de <code>null</code>.
      */
     public void agregaInicio(Object elemento) {
-        // Aquí va su código.
         if (elemento == null)
             return;
         longitud ++;
@@ -264,16 +188,12 @@ public class Lista {
      *                 si es distinto de <code>null</code>.
      */
     public void inserta(int i, Object elemento) {
-        // Aquí va su código.
-        if (elemento == null){
+        if (elemento == null)
             return;
-        }
-        if (i <= 0){
+        if (i <= 0)
             agregaInicio(elemento);
-        }
-        else if (i >= longitud){
+        else if (i >= longitud) 
             agregaFinal(elemento);
-        }
         else {
             Nodo s = buscaNodoIndice(i);
             Nodo n = new Nodo(elemento);
@@ -293,14 +213,11 @@ public class Lista {
      * @param elemento el elemento a eliminar.
      */
     public void elimina(Object elemento) {
-        // Aquí va su código.
-        if (elemento == null){
+        if (elemento == null) 
             return;
-        }
         Nodo marcado = buscaNodo(elemento);
-        if (marcado == null){
+        if (marcado == null)
             return;
-        }
         eliminarNodo(marcado); 
     }
 
@@ -310,17 +227,14 @@ public class Lista {
      *         <code>null</code> si la lista es vacía.
      */
     public Object eliminaPrimero() {
-        // Aquí va su código.
-        if (cabeza == null){
+        if (cabeza == null)
             return null;
-        }
-        Object n;
-        n = cabeza.elemento;
-        if(rabo == cabeza){
+        Object n = cabeza.elemento;
+        if(rabo == cabeza) {
             rabo = cabeza = null;
             longitud = 0;
         }
-        if (cabeza != null){
+        if (cabeza != null) {
             cabeza = cabeza.siguiente;
             cabeza.anterior = null;
             longitud --;
@@ -334,12 +248,9 @@ public class Lista {
      *         <code>null</code> si la lista es vacía.
      */
     public Object eliminaUltimo() {
-        // Aquí va su código.
-        if (cabeza == null){
+        if (cabeza == null)
             return null;
-        }
-        Object n;
-        n = rabo.elemento;
+        Object n = rabo.elemento;
         if(rabo == cabeza){
             rabo = cabeza = null;
             longitud = 0;
@@ -359,15 +270,13 @@ public class Lista {
      *         <code>false</code> en otro caso.
      */
     public boolean contiene(Object elemento) {
-        // Aquí va su código.
-        if(elemento == null){
-            return false;
+        Nodo a = cabeza;
+        while (a != null) {
+            if (a.elemento.equals(elemento))
+                return true;
+            a = a.siguiente;
         }
-        Nodo n = buscaNodo(elemento);
-        if(n == null){
-            return false;
-        }
-        return true;
+        return false;
     }
 
     /**
@@ -375,8 +284,13 @@ public class Lista {
      * @return una nueva lista que es la reversa la que manda llamar el método.
      */
     public Lista reversa() {
-        // Aquí va su código.
-        return auxiliarReversa(cabeza, new Lista());
+        Lista r = new Lista();
+        Nodo a = cabeza;
+        while (a != null) {
+            r.agregaInicio(a.elemento);
+            a = a.siguiente;
+        }
+        return r;
     }
 
     /**
@@ -385,15 +299,19 @@ public class Lista {
      * @return una copiad de la lista.
      */
     public Lista copia() {
-        // Aquí va su código.
-        return auxiliarCopia(cabeza, new Lista());
+        Lista r = new Lista();
+        Nodo a = cabeza;
+        while (a != null) {
+            r.agregaFinal(a.elemento);
+            a = a.siguiente;
+        }
+        return r;
     }
 
     /**
      * Limpia la lista de elementos, dejándola vacía.
      */
     public void limpia() {
-        // Aquí va su código.
         cabeza = rabo = null;
         longitud = 0;
     }
@@ -404,7 +322,6 @@ public class Lista {
      *         es vacía.
      */
     public Object getPrimero() {
-        // Aquí va su código.
         if (cabeza == null)
             return null;
         else 
@@ -417,7 +334,6 @@ public class Lista {
      *         es vacía.
      */
     public Object getUltimo() {
-        // Aquí va su código.
         if (rabo == null)
             return null;
         else 
@@ -432,11 +348,13 @@ public class Lista {
      *         elementos en la lista.
      */
     public Object get(int i) {
-        // Aquí va su código.
-        if (i < 0 || i >= longitud)
+        if (i < 0 || i >= longitud) 
             return null;
-        Nodo b;
-        b = buscaNodoIndice(i);
+        int a = 0;
+        Nodo b = cabeza;
+        while (a++ < i) {
+            b = b.siguiente;
+        }
         return b.elemento;
     }
 
@@ -447,8 +365,15 @@ public class Lista {
      *         no está contenido en la lista.
      */
     public int indiceDe(Object elemento) {
-        // Aquí va su código.
-        return auxiliarIndiceDe(elemento, 0, cabeza);
+        int a = 0;
+        Nodo b = cabeza;
+        while (b != null) {
+            if (b.elemento.equals(elemento))
+                return a;
+            a ++;
+            b = b.siguiente;
+        }
+        return -1;
     }
 
     /**
@@ -456,14 +381,13 @@ public class Lista {
      * @return una representación en cadena de la lista.
      */
     @Override public String toString() {
-        // Aquí va su código.
-        if ( cabeza == null) 
-		    return "[]";
-	    String s;
-	    Nodo n = cabeza;
-	    s = auxiliarToString(n, "[");
-	    s += String.format("%s]", rabo.elemento);
-	    return s;
+        if (cabeza == null)
+            return "[]";
+        String r = "[";
+        for (int a = 0; a < longitud - 1; a++)
+            r += String.format("%s, ", this.get(a));
+            r += String.format("%s]", this.get(longitud-1));
+            return r;
     }
 
     /**
@@ -476,10 +400,19 @@ public class Lista {
         if (!(objeto instanceof Lista))
             return false;
         Lista lista = (Lista)objeto;
-        // Aquí va su código.
-        if (longitud != lista.longitud)
+        if (lista.getLongitud() != longitud)
             return false;
-        return auxiliarEquals(lista, cabeza, lista.cabeza);
+        Nodo n = lista.cabeza;
+        Nodo s = cabeza;
+        while (n != null) {
+            if (n.elemento.equals(s.elemento)) {
+                n = n.siguiente;
+                s = s.siguiente;
+            } else 
+                return false;
+        }
+        return true;
+        
     }
 
     /**
@@ -487,7 +420,6 @@ public class Lista {
      * @return el nodo cabeza de la lista.
      */
     public Nodo getCabeza() {
-        // Aquí va su código.
         return cabeza;
     }
 
@@ -496,7 +428,6 @@ public class Lista {
      * @return el nodo rabo de la lista.
      */
     public Nodo getRabo() {
-        // Aquí va su código.
         return rabo;
     }
 }

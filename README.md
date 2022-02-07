@@ -2,6 +2,6 @@
 
 Prácticas ICC 2022-1
 
-Introducción a Ciencias de la Computación
+Profesor: Canek Peláez Valdés
 =========================================
-### Fecha de entrega: martes 5 de octubre, 2021
+Ayudantes: 

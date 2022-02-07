@@ -1,4 +1,4 @@
-# Introducci-n-a-Ciencias-de-la-Computaci-n
+# Introducció a Ciencias de la Computación
 Prácticas ICC 2022-1
 Introducción a Ciencias de la Computación
 =========================================

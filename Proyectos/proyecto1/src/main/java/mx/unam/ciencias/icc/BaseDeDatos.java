@@ -72,7 +72,7 @@ public abstract class BaseDeDatos {
      */
     public void guarda(BufferedWriter out) throws IOException {
         Lista.Nodo n = registros.getCabeza();
-        while(n!= null){
+        while (n!= null) {
             Registro r = (Registro) n.get();
             out.write(r.serializa());
             n = n.getSiguiente();
@@ -87,11 +87,10 @@ public abstract class BaseDeDatos {
      * @throws IOException si ocurre un error de entrada/salida.
      */
     public void carga(BufferedReader in) throws IOException {
-        if (getNumRegistros() != 0){
+        if (getNumRegistros() != 0)
             registros.limpia();
-        }
         String linea;
-        while((linea = in.readLine()) != null){
+        while ((linea = in.readLine()) != null) {
             Registro r = creaRegistro();
             try {
                 r.deserializa(linea);
@@ -112,13 +111,13 @@ public abstract class BaseDeDatos {
      *         correcta.
      */
     public Lista buscaRegistros(Enum campo, Object valor) {
-        if(!(campo instanceof CampoTaekwondoin))
+        if (!(campo instanceof CampoTaekwondoin))
             throw new IllegalArgumentException("El campo no es instancia de CampoTaekwondo");
         Lista l = new Lista();
         Lista.Nodo n = registros.getCabeza();
-        while(n != null){
+        while (n != null) {
             Registro r = (Registro) n.get();
-            if(r.caza(campo, valor))
+            if (r.caza(campo, valor))
                 l.agregaFinal(r);
             n = n.getSiguiente();
         }

@@ -22,20 +22,15 @@ public class ArgumentHandler {
     * @param list lista ordenada contenida en el archivo.
     * @throws IOException si ocurre un error al guardar el archivo en el disco.
     */
-  public static <T> void guarda(String fileName, Lista<T> list) throws IOException{
-    try {
-      FileOutputStream fileOut = new FileOutputStream(fileName);
-      OutputStreamWriter osOut = new OutputStreamWriter(fileOut);
-      BufferedWriter out = new BufferedWriter(osOut);
-      for (T n : list){
-        out.write(n.toString());
-        out.newLine();
-      }
-      out.close();  
-    } catch (IOException ioe){
-      System.out.printf("Ocurrió un error al guardar el archivo \"%s\"", fileName);
-			System.exit(1);
+  public static <T> void guarda(String fileName, Lista<T> list) throws IOException {
+    FileOutputStream fileOut = new FileOutputStream(fileName);
+    OutputStreamWriter osOut = new OutputStreamWriter(fileOut);
+    BufferedWriter out = new BufferedWriter(osOut);
+    for (T n : list) {
+      out.write(n.toString());
+      out.newLine();
     }
+    out.close();  
   }
   
   /**
@@ -45,18 +40,13 @@ public class ArgumentHandler {
     * @throws IOException si ocurre un error al cargar el archivo.
     */
   public static void carga(String fileName, Lista<Strip> list) throws IOException {
-    try {
-      FileInputStream fileIn = new FileInputStream(fileName);
-      InputStreamReader isIn = new InputStreamReader(fileIn);
-      BufferedReader in = new BufferedReader(isIn);
-      String line = in.readLine();
-      while (line != null) {
-        list.agregaFinal(new Strip(line));
-        line = in.readLine();  
-      }
-    } catch (IOException ioe) {
-      System.out.printf("Ocurrió un error al cargar el archivo \"%s\".\n", fileName);
-			System.exit(1);
+    FileInputStream fileIn = new FileInputStream(fileName);
+    InputStreamReader isIn = new InputStreamReader(fileIn);
+    BufferedReader in = new BufferedReader(isIn);
+    String line = in.readLine();
+    while (line != null) {
+      list.agregaFinal(new Strip(line));
+      line = in.readLine();  
     }
   }
 
@@ -65,8 +55,7 @@ public class ArgumentHandler {
     * @param list lista a imprimir.
     */
   public static <T> void printConsole(Lista<T> list) {
-    for (T n : list){
+    for (T n : list)
       System.out.print(n.toString() + "\n");
-    }
   }
 }

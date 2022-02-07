@@ -23,18 +23,12 @@ public enum CampoTaekwondoin {
      */
     @Override public String toString() {
         switch(this){
-            case NOMBRE: 
-                return "Nombre";
-            case PAIS: 
-                return "País";
-            case CINTA: 
-                return "Cinta";
-            case PESO : 
-                return "Peso";
-            case EDAD: 
-                return "Edad";
-            default: 
-                throw new IllegalArgumentException(); 
+            case NOMBRE:  return "Nombre";
+            case PAIS:    return "País";
+            case CINTA:   return "Cinta";
+            case PESO:    return "Peso";
+            case EDAD:    return "Edad";
+            default:      throw new IllegalArgumentException(); 
         }
     }
 }

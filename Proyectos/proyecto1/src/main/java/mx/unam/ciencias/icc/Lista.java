@@ -57,18 +57,18 @@ public class Lista {
     }
 
     //Método auxiliar para buscar un nodo
-    private Nodo buscaNodo(Object buscado){ 
+    private Nodo buscaNodo(Object buscado) { 
         Nodo n = cabeza;
-        while (n != null){
+        while (n != null) {
             if(n.elemento.equals(buscado))
                 return n;
             n = n.siguiente;
         }
         return null;
     }
-    
+
     //Método auxiliar para eliminar un nodo
-    private void eliminarNodo(Nodo porEliminar){ 
+    private void eliminarNodo(Nodo porEliminar) { 
         Nodo s;
         Nodo a;
         if (rabo == cabeza) {
@@ -81,7 +81,7 @@ public class Lista {
             cabeza = s;
             longitud --;
         }
-        else if (porEliminar == rabo){
+        else if (porEliminar == rabo) {
             s = porEliminar.anterior;
             s.siguiente = null;
             rabo = s;
@@ -132,8 +132,7 @@ public class Lista {
     public boolean esVacia() {
         if (cabeza != null)
             return false;
-        else 
-          return true;
+        return true;
     }
 
     /**
@@ -145,7 +144,7 @@ public class Lista {
      */
     public void agregaFinal(Object elemento) {
         if(elemento == null) 
-            throw new IllegalArgumentException("Elemento nulo");
+            throw new IllegalArgumentException("Elemento Nulo");
         Nodo n = new Nodo(elemento);
         longitud++;
         if (rabo == null)
@@ -166,7 +165,7 @@ public class Lista {
      */
     public void agregaInicio(Object elemento) {
         if (elemento == null)
-            throw new IllegalArgumentException("Elemento nulo");
+            throw new IllegalArgumentException("Elemento Nulo");
         longitud ++;
         Nodo n = new Nodo(elemento);
         if (rabo == null)
@@ -195,7 +194,7 @@ public class Lista {
      */
     public void inserta(int i, Object elemento) {
         if (elemento == null)
-            throw new IllegalArgumentException("Elemento nulo");
+            throw new IllegalArgumentException("Elemento Nulo");
         if (i <= 0)
             agregaInicio(elemento);
         else if (i >= longitud)
@@ -219,10 +218,8 @@ public class Lista {
      * @param elemento el elemento a eliminar.
      */
     public void elimina(Object elemento) {
-        if (elemento == null)
-            return;
         Nodo marcado = buscaNodo(elemento);
-        if (marcado == null)
+        if (elemento == null || marcado == null)
             return;
         eliminarNodo(marcado);
     }
@@ -234,14 +231,13 @@ public class Lista {
      */
     public Object eliminaPrimero() {
         if (cabeza == null)
-            throw new NoSuchElementException("Lista vacía");
-        Object n;
-        n = cabeza.elemento;
-        if (rabo == cabeza){
+            throw new NoSuchElementException("Lista Vacía");
+        Object n = cabeza.elemento;
+        if (rabo == cabeza) {
             rabo = cabeza = null;
             longitud = 0;
         }
-        if (cabeza != null){
+        if (cabeza != null) {
             cabeza = cabeza.siguiente;
             cabeza.anterior = null;
             longitud --;
@@ -256,14 +252,13 @@ public class Lista {
      */
     public Object eliminaUltimo() {
         if (cabeza == null)
-            throw new NoSuchElementException("Lista vacía");
-        Object n;
-        n = rabo.elemento;
-        if (rabo == cabeza){
+            throw new NoSuchElementException("Lista Vacía");
+        Object n = rabo.elemento;
+        if (rabo == cabeza) {
             rabo = cabeza = null;
             longitud = 0;
         }
-        if (rabo != null){
+        if (rabo != null) {
             rabo = rabo.anterior;
             rabo.siguiente = null;
             longitud --;
@@ -279,8 +274,8 @@ public class Lista {
      */
     public boolean contiene(Object elemento) {
         Nodo a = cabeza;
-        while (a != null){
-            if(a.elemento.equals(elemento))
+        while (a != null) {
+            if (a.elemento.equals(elemento))
                 return true;
             a = a.siguiente;
         }
@@ -294,7 +289,7 @@ public class Lista {
     public Lista reversa() {
         Lista r = new Lista();
         Nodo a = cabeza;
-        while (a != null){
+        while (a != null) {
             r.agregaInicio(a.elemento);
             a = a.siguiente;
         }
@@ -309,7 +304,7 @@ public class Lista {
     public Lista copia() {
         Lista r = new Lista();
         Nodo a = cabeza;
-        while (a != null){
+        while (a != null) {
             r.agregaFinal(a.elemento);
             a = a.siguiente;
         }
@@ -331,9 +326,8 @@ public class Lista {
      */
     public Object getPrimero() {
         if (cabeza == null)
-            throw new NoSuchElementException("Lista vacía");
-        else
-            return cabeza.elemento;
+            throw new NoSuchElementException("Lista Vacía");
+        return cabeza.elemento;
     }
 
     /**
@@ -343,9 +337,8 @@ public class Lista {
      */
     public Object getUltimo() {
         if (rabo == null)
-            throw new NoSuchElementException("Lista vacía");
-        else 
-            return rabo.elemento;
+            throw new NoSuchElementException("Lista Vacía");
+        return rabo.elemento;
     }
 
     /**
@@ -360,7 +353,7 @@ public class Lista {
             throw new ExcepcionIndiceInvalido("Índice fuera del rango de la lista");
         int a = 0;
         Nodo b = cabeza;
-        while (a++ < i){
+        while (a++ < i) {
             b = b.siguiente;
         }
         return b.elemento;
@@ -375,8 +368,8 @@ public class Lista {
     public int indiceDe(Object elemento) {
         int a = 0;
         Nodo b = cabeza;
-        while (b != null){
-            if(b.elemento.equals(elemento))
+        while (b != null) {
+            if (b.elemento.equals(elemento))
                 return a;
             a ++;
             b = b.siguiente;
@@ -408,12 +401,12 @@ public class Lista {
         if (!(objeto instanceof Lista))
             return false;
         Lista lista = (Lista)objeto;
-        if(lista.getLongitud() != longitud)
+        if (lista.getLongitud() != longitud)
             return false;
         Nodo n = lista.cabeza;
         Nodo s = cabeza;
-        while(n != null) {
-            if(n.elemento.equals(s.elemento)) {
+        while (n != null) {
+            if (n.elemento.equals(s.elemento)) {
                 n = n.siguiente;
                 s = s.siguiente;
             } else 

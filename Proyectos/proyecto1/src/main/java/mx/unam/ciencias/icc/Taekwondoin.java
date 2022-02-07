@@ -148,10 +148,10 @@ public class Taekwondoin implements Registro {
         Taekwondoin taekwondoin = (Taekwondoin)objeto;
         if (taekwondoin.nombre.equals(nombre) && taekwondoin.pais.equals(pais) 
             && taekwondoin.cinta.equals(cinta) && taekwondoin.edad==edad && 
-            taekwondoin.peso==peso)
+            taekwondoin.peso==peso) {
             return true;
-        else 
-          return false;
+        } else 
+            return false;
     }
 
     /**
@@ -243,53 +243,43 @@ public class Taekwondoin implements Registro {
             throw new IllegalArgumentException();
         CampoTaekwondoin c = (CampoTaekwondoin)campo;
         switch(c){
-            case NOMBRE:
-              return cazaNombre(valor);
-            case PAIS:
-              return cazaPais(valor);
-            case CINTA:
-              return cazaCinta(valor);
-            case PESO:
-              return cazaPeso(valor);
-            case EDAD:
-              return cazaEdad(valor);
-            default:
-              return false;
+            case NOMBRE:  return cazaNombre(valor);
+            case PAIS:    return cazaPais(valor);
+            case CINTA:   return cazaCinta(valor);
+            case PESO:    return cazaPeso(valor);
+            case EDAD:    return cazaEdad(valor);
+            default:      return false;
         }
     }
-    //Método Auxiliar
-    private boolean cazaNombre(Object n){
-      if(!(n instanceof String))
+    //Métodos auxiliares
+    private boolean cazaNombre(Object n) {
+      if (!(n instanceof String))
         return false;
       String a = (String) n;
-      if(a.isEmpty()) 
+      if (a.isEmpty()) 
         return false;
       return nombre.indexOf(a) != -1;
     }
-
-    private boolean cazaPais(Object n){
-      if(!(n instanceof String)) 
+    private boolean cazaPais(Object n) {
+      if (!(n instanceof String)) 
         return false;
       String a = (String) n;
       return pais.indexOf(a) != -1;
     }
-    
-    private boolean cazaCinta(Object n){
-      if(!(n instanceof String)) 
+    private boolean cazaCinta(Object n) {
+      if (!(n instanceof String)) 
         return false;
       String a = (String) n;
       return cinta.indexOf(a) != -1;
     }
-
-    private boolean cazaPeso(Object n){
-      if(!(n instanceof Double)) 
+    private boolean cazaPeso(Object n) {
+      if (!(n instanceof Double)) 
         return false;
       Double a = (Double) n;
       return peso >= a.doubleValue();
-        }
-
-    private boolean cazaEdad(Object n){
-      if(!(n instanceof Integer)) 
+    }
+    private boolean cazaEdad(Object n) {
+      if (!(n instanceof Integer)) 
         return false;
       Integer a = (Integer) n;
       return edad >= a.intValue();

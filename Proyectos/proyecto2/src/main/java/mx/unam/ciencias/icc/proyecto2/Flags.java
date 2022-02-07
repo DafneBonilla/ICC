@@ -28,29 +28,24 @@ public class Flags {
     * @param file archivo en donde se guarda la salida de la bandera output.
     * @throws IOException si ocurre un error al guardar file.
     */
-  public void runFlag(Lista<Strip> lines, boolean reverse, boolean output, String file) throws IOException{      
+  public void runFlag(Lista<Strip> lines, boolean reverse, boolean output, String file) throws IOException {
     Lista<Strip> ordenada = lines.mergeSort(lines);
-    try {
-      if (reverse) {
-        ordenada = ordenada.reversa();
-        ArgumentHandler.printConsole(ordenada);
-      } 
-      else if (output) {
-        ArgumentHandler.guarda(file, ordenada);
-        ArgumentHandler.printConsole(ordenada);
-        System.out.printf("\nGuardado exitosamente en \"%s\"\n", file);
-      }
-      else if(reverse && output) {
-          ordenada = ordenada.reversa();
-          ArgumentHandler.printConsole(ordenada);
-          ArgumentHandler.guarda(file, ordenada);
-          System.out.printf("\nGuardado exitosamente en \"%s\"\n", file);
-      } else {
-        ArgumentHandler.printConsole(ordenada);
-      }   
-    } catch (IOException ioe) {
-        throw new IOException("Ocurrió un error al guardar el archivo.");
+    if (reverse) {
+      ordenada = ordenada.reversa();
+      ArgumentHandler.printConsole(ordenada);
+    } 
+    else if (output) {
+      ArgumentHandler.guarda(file, ordenada);
+      ArgumentHandler.printConsole(ordenada);
+      System.out.printf("\nGuardado exitosamente en \"%s\"\n", file);
     }
+    else if(reverse && output) {
+      ordenada = ordenada.reversa();
+      ArgumentHandler.printConsole(ordenada);
+      ArgumentHandler.guarda(file, ordenada);
+      System.out.printf("\nGuardado exitosamente en \"%s\"\n", file);
+    } else
+        ArgumentHandler.printConsole(ordenada);
   }
 
   /** 

@@ -58,21 +58,6 @@ public class ListaEstudiante {
         }
     }
 
-    /* Primer elemento de la lista. */
-    private Nodo cabeza;
-    /* Último elemento de la lista. */
-    private Nodo rabo;
-    /* Número de elementos en la lista. */
-    private int longitud;
-
-    /**
-     * Regresa la longitud de la lista.
-     * @return la longitud de la lista, el número de elementos que contiene.
-     */
-    public int getLongitud() {
-        return longitud;
-    }
-
     //Método auxiliar para buscar un nodo
     private Nodo buscaNodo(Estudiante buscado) { 
         Nodo n = cabeza;
@@ -124,6 +109,21 @@ public class ListaEstudiante {
             n = n.siguiente;
         }
         return null;
+    }
+
+    /* Primer elemento de la lista. */
+    private Nodo cabeza;
+    /* Último elemento de la lista. */
+    private Nodo rabo;
+    /* Número de elementos en la lista. */
+    private int longitud;
+
+    /**
+     * Regresa la longitud de la lista.
+     * @return la longitud de la lista, el número de elementos que contiene.
+     */
+    public int getLongitud() {
+        return longitud;
     }
 
     /**

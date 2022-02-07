@@ -28,9 +28,9 @@ public class Arreglos {
      */
     public static <T> void
     selectionSort(T[] arreglo, Comparator<T> comparador) {
-        for (int i = 0; i < arreglo.length; i++){
+        for (int i = 0; i < arreglo.length; i++) {
           int m = i;
-          for (int j = i + 1; j < arreglo.length; j++){
+          for (int j = i + 1; j < arreglo.length; j++) {
             if (comparador.compare(arreglo[j], arreglo[m]) < 0)
               m = j;
           }
@@ -96,31 +96,27 @@ public class Arreglos {
           else
             right = half - 1;
         }
-        if (right == left){
+        if (right == left) {
           if (comparador.compare(elemento, arreglo[left]) == 0)
             return left;
         }
         return -1;
     }
-
-    //Métodos auxiliares ordenamientos:
-    
     //Método auxiliar intercambia
-    private static <T> void intercambia(T[] arreglo, int i, int j){
+    private static <T> void intercambia(T[] arreglo, int i, int j) {
       T elem1 = arreglo[i];
       T elem2 = arreglo[j];
       arreglo[i] = elem2;
       arreglo[j] = elem1;
     }
-
     //Método auxiliar quickSort
-    public static <T> void quickSortAuxiliar(T[] array, Comparator<T> comparador, int n, int m){
+    public static <T> void quickSortAuxiliar(T[] array, Comparator<T> comparador, int n, int m) {
       if (m <= n) 
         return;
       int i = n + 1;
       int j = m;
-      while (i < j){
-        if (comparador.compare(array[i], array[n]) > 0 && comparador.compare(array[n], array[j]) >= 0){
+      while (i < j) {
+        if (comparador.compare(array[i], array[n]) > 0 && comparador.compare(array[n], array[j]) >= 0) {
           intercambia(array, i, j);
           i++;
           j--;

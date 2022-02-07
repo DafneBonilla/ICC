@@ -27,7 +27,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      * Constructor único.
      */
     public BaseDeDatos() {
-        registros = new Lista<R>();
+        this.registros = new Lista<R>();
     }
 
     /**
@@ -88,11 +88,10 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      * @throws IOException si ocurre un error de entrada/salida.
      */
     public void carga(BufferedReader in) throws IOException {
-        if (getNumRegistros() != 0){
+        if (getNumRegistros() != 0)
             registros.limpia();
-        }
         String linea;
-        while ((linea = in.readLine()) != null){
+        while ((linea = in.readLine()) != null) {
             R r = creaRegistro();
             try {
                 r.deserializa(linea);
@@ -113,7 +112,7 @@ public abstract class BaseDeDatos<R extends Registro<R, C>, C extends Enum> {
      *         correcta.
      */
     public Lista<R> buscaRegistros(C campo, Object valor) {
-        if(!(campo instanceof CampoEstudiante))
+        if (!(campo instanceof CampoEstudiante))
             throw new IllegalArgumentException();
         Lista<R> l = new Lista<>();
         for (R r: registros)

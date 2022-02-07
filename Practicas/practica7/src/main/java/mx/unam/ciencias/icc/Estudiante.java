@@ -124,11 +124,10 @@ public class Estudiante implements Registro<Estudiante, CampoEstudiante> {
         if (!(objeto instanceof Estudiante))
             return false;
         Estudiante estudiante = (Estudiante)objeto;
-        if (estudiante.nombre.equals(nombre) && estudiante.cuenta==cuenta &&
-        estudiante.edad==edad && estudiante.promedio==promedio){
+        if (estudiante.nombre.equals(nombre) && estudiante.cuenta == cuenta &&
+        estudiante.edad == edad && estudiante.promedio == promedio) {
             return true;
-        }
-        else 
+        } else 
           return false;
     }
 
@@ -158,12 +157,11 @@ public class Estudiante implements Registro<Estudiante, CampoEstudiante> {
           throw new ExcepcionLineaInvalida("Línea Inválida");
         String [] a = linea.split("\t");
         if (a.length != 4)
-          throw new ExcepcionLineaInvalida();
+          throw new ExcepcionLineaInvalida("Serialización Inválida");
         nombre = a[0];  
         try {  
           cuenta = Integer.parseInt(a[1]);
           promedio = Double.parseDouble(a[2]);
-          String.format("%2.2f", promedio);
           edad = Integer.parseInt(a[3]);
         } catch (NumberFormatException nfe) {  
             throw new ExcepcionLineaInvalida();
@@ -177,7 +175,7 @@ public class Estudiante implements Registro<Estudiante, CampoEstudiante> {
      */
     @Override public void actualiza(Estudiante estudiante) {
         if (!(estudiante instanceof Estudiante))
-            throw new IllegalArgumentException("Estudiante inválido");
+            throw new IllegalArgumentException("Estudiante Inválido");
         Estudiante a = (Estudiante) estudiante;
         setNombre(a.nombre);
         setCuenta(a.cuenta);
@@ -215,42 +213,36 @@ public class Estudiante implements Registro<Estudiante, CampoEstudiante> {
             throw new IllegalArgumentException();
         CampoEstudiante c = (CampoEstudiante)campo;
         switch(c){
-            case NOMBRE:
-              return cazaNombre(valor);
-            case CUENTA:
-              return cazaCuenta(valor);
-            case EDAD:
-              return cazaEdad(valor);
-            case PROMEDIO:
-              return cazaPromedio(valor);
-            default:
-              return false;
+            case NOMBRE:    return cazaNombre(valor);
+            case CUENTA:    return cazaCuenta(valor);
+            case EDAD:      return cazaEdad(valor);
+            case PROMEDIO:  return cazaPromedio(valor);
+            default:        return false;
         }
     }
-
-    //Método auxiliar   
-    private boolean cazaNombre(Object n){
-      if(!(n instanceof String))
+    //Métodos auxiliares
+    private boolean cazaNombre(Object n) {
+      if (!(n instanceof String))
         return false;
       String a = (String) n;
-      if(a.isEmpty()) 
+      if (a.isEmpty()) 
         return false;
       return nombre.indexOf(a) != -1;
     }
-    private boolean cazaCuenta(Object n){
-      if(!(n instanceof Integer)) 
+    private boolean cazaCuenta(Object n) {
+      if (!(n instanceof Integer)) 
         return false;
       Integer a = (Integer) n;
       return cuenta >= a.intValue();
     }
-    private boolean cazaEdad(Object n){
-      if(!(n instanceof Integer)) 
+    private boolean cazaEdad(Object n) {
+      if (!(n instanceof Integer)) 
         return false;
       Integer a = (Integer) n;
       return edad >= a.intValue();
     }
-    private boolean cazaPromedio(Object n){
-      if(!(n instanceof Double)) 
+    private boolean cazaPromedio(Object n) {
+      if (!(n instanceof Double)) 
         return false;
       Double a = (Double) n;
       return promedio >= a.doubleValue();

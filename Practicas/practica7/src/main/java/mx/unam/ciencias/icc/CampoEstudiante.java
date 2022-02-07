@@ -21,16 +21,11 @@ public enum CampoEstudiante {
      */
     @Override public String toString() {
         switch(this){
-            case NOMBRE: 
-                return "Nombre";
-            case CUENTA: 
-                return "# Cuenta";
-            case PROMEDIO : 
-                return "Promedio";
-            case EDAD: 
-                return "Edad";
-            default: 
-                throw new IllegalArgumentException(); 
+            case NOMBRE:    return "Nombre";
+            case CUENTA:    return "# Cuenta";
+            case PROMEDIO:  return "Promedio";
+            case EDAD:      return "Edad";
+            default:        throw new IllegalArgumentException(); 
         }
     }
 }

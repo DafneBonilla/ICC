@@ -86,7 +86,7 @@ public class Arreglos {
         int left = 0;
         int right = arreglo.length - 1;
         int half, a;
-        while (left < right){
+        while (left < right) {
             half = (left + right) / 2;
             a = comparador.compare(elemento, arreglo[half]);
             if (a == 0)
@@ -96,15 +96,12 @@ public class Arreglos {
             else
                 right = half - 1;
         }
-        if (right == left){
+        if (right == left) {
             if (comparador.compare(elemento, arreglo[left]) == 0)
                 return left;
         }
         return -1;
     }
-
-    //Métodos auxiliares ordenamientos:
-    
     //Método auxiliar intercambia
     private static <T> void intercambia(T[] arreglo, int i, int j) {
         T elem1 = arreglo[i];
@@ -112,7 +109,6 @@ public class Arreglos {
         arreglo[i] = elem2;
         arreglo[j] = elem1;
     }
-  
     //Método auxiliar quickSort
     public static <T> void quickSortAuxiliar(T[] array, Comparator<T> comparador, int n, int m) {
         if (m <= n) 

@@ -195,8 +195,7 @@ public class Atleta implements Registro<Atleta, CampoAtleta> {
         if (atleta.getNombre().equals(getNombre()) && atleta.getPais().equals(getPais()) && atleta.getCinta().equals(getCinta())
         && atleta.getPeso() == getPeso() && atleta.getEdad() == getEdad()) {
             return true;
-        }
-        else 
+        } else 
           return false;
     }
 
@@ -245,7 +244,7 @@ public class Atleta implements Registro<Atleta, CampoAtleta> {
      */
     public void actualiza(Atleta atleta) {
         if (!(atleta instanceof Atleta))
-            throw new IllegalArgumentException("Atleta inválido");
+            throw new IllegalArgumentException("Atleta Inválido");
         Atleta a = (Atleta) atleta;
         setNombre(a.getNombre());
         setPais(a.getPais());
@@ -294,8 +293,7 @@ public class Atleta implements Registro<Atleta, CampoAtleta> {
             default:     return false;
         }
     }
-
-    //Método auxiliar   
+    //Métodos auxiliares
     private boolean cazaNombre(Object n) {
         if (!(n instanceof String))
             return false;

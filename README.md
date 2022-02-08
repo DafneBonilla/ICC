@@ -1,10 +1,10 @@
-# Introducción a Ciencias de la Computación
-Prácticas ICC 2022-1
+Introducción a Ciencias de la Computación
+=========================================
 
-Profesor: Canek Peláez Valdés
+Prácticas ICC 2022-1
 -------------------------------------------
 
-### Fecha de entrega: martes 19 de octubre, 2021
+### Profesor: Canek Peláez Valdés
 
 Deben implementar los métodos faltantes de la clase
 [ListaEstudiante](https://aztlan.fciencias.unam.mx/gitlab/2022-1-icc/practica2/-/blob/main/src/main/java/mx/unam/ciencias/icc/ListaEstudiante.java).

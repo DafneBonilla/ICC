@@ -6,8 +6,10 @@ Prácticas ICC 2022-1
 
 ### Profesor: Canek Peláez Valdés
 
-Deben implementar los métodos faltantes de la clase
-[ListaEstudiante](https://aztlan.fciencias.unam.mx/gitlab/2022-1-icc/practica2/-/blob/main/src/main/java/mx/unam/ciencias/icc/ListaEstudiante.java).
+### Ayudantes
+
+* `Estudiante.java` y
+* `ListaEstudiante.java`.
 
 Una vez que hayan terminado su clase, debe compilar al hacer:
 

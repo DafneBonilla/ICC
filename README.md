@@ -2,14 +2,10 @@
 
 Prácticas ICC 2022-1
 
-Profesor: Canek Peláez Valdés
-=========================================
-Ayudantes: 
-
 Introducción a Ciencias de la Computación
 =========================================
 
-Práctica 2: Estructuras de control y listas
+Profesor: Canek Peláez Valdés
 -------------------------------------------
 
 ### Fecha de entrega: martes 19 de octubre, 2021
